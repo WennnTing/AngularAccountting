@@ -1,0 +1,103 @@
+<div class="addButton">
+  <button type="button" class="addButton__btn" (click)="toggleDialog()">新增一筆</button>
+</div>
+
+<div class="overlay" *ngIf="addTrue" (click)="toggleDialog()"></div>
+<div class="overlay" *ngIf="editTrue"></div>
+
+
+<div class="dialog" *ngIf="addTrue">
+  <div class="dialog__topbar">
+    <p>新增一筆紀錄</p>
+  </div>
+
+  <div class="dialog__maintext">
+
+    <div class="dialog__left" *ngIf="mainPage">
+      <span>日期</span>
+      <span>名稱</span>
+      <span>人數</span>
+    </div>
+
+    <div class="dialog__right" *ngIf="mainPage">
+      <input type="date" [(ngModel)]="dateValue" min="{{ minDate | date: 'yyyy-MM-dd' }}">
+      <input type="text" [(ngModel)]="titleValue">
+      <input type="number" [(ngModel)]="numberOfPeople">
+    </div>
+  </div>
+
+
+  <div class="dialog__showName" *ngIf="showNameInput">
+    <ng-container *ngFor="let item of countPeople(numberOfPeople); let i = index">
+      <input type="text" placeholder="參與人員名稱" [(ngModel)]="participantName[i]">
+    </ng-container>
+  </div>
+
+
+
+  <div class="dialog__btn" *ngIf="showNameInput">
+    <button class="dialog__add" (click)="toNewAccount()">新增</button>
+  </div>
+
+  <div class="dialog__nextbtn" *ngIf="mainPage">
+    <button class="dialog__nextPage" (click)="goNextPage()">下一步</button>
+  </div>
+
+</div>
+
+<div *ngFor="let account of newAccountData | keyvalue | reverse">
+  <div class="accountDetails"
+    [ngClass]="{'editSettle': account.value.settle === '2','fade-out': account.value.isDelete,'fade-out-active': account.value.isDelete  }">
+    <div class="accountDetails__main">
+      <div class="accountDetails__top">
+        <span>{{ account.value.date }}</span>
+        <span>{{ account.value.title }}</span>
+        <span>參與人員：{{ account.value.participantName }}</span>
+      </div>
+      <div class="accountDetails__btn">
+        <button type="button" class="accountDetails__search" (click)="viewAccountDetails(account.key)">查看</button>
+        <button type="button" class="accountDetails__search" (click)="editAccount(account.key)"
+          [disabled]="account.value.settle === '2'">編輯</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="editDialog" *ngIf="editTrue === true">
+  <div class="editDialog__topbar">
+    <p>編輯</p>
+  </div>
+
+  <div class="editDialog__maintext">
+
+    <div class="editDialog__left">
+      <span>日期</span>
+      <span>名稱</span>
+      <span>狀態</span>
+
+    </div>
+
+    <div class="editDialog__right">
+      <span>{{dateValue}}</span>
+      <input type="text" [(ngModel)]="titleValue">
+
+      <select name="" id="" [(ngModel)]="settleValue">
+        <option value="">請選擇</option>
+        <option value="1">尚未結清</option>
+        <option value="2">已經結清</option>
+      </select>
+    </div>
+
+  </div>
+
+  <div class="editDialog__btn">
+    <button class="editDialog__add" (click)="saveEdit()">儲存</button>
+    <button class="editDialog__add" (click)="toggleEdit()">取消</button>
+  </div>
+
+  <div class="editDialog__delete">
+    <button class="editDialog__deleteBtn" (click)="deleteAccount(editAccountId)">刪除</button>
+  </div>
+
+</div>

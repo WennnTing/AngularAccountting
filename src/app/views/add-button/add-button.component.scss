@@ -1,0 +1,331 @@
+@import '../../../styles/variables';
+
+.addButton {
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &__btn {
+    background-color: rgb(245, 208, 208, 0.5);
+    border: 1px solid $dkPink;
+    width: 280px;
+    font-size: 16px;
+    font-weight: $fw600;
+    color: $dkPink;
+    border-radius: 10px;
+    padding: 4px;
+  }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.dialog {
+  width: 360px;
+  background-color: white;
+  position: absolute;
+
+  border-radius: 20px;
+  font-size: 16px;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  &__topbar {
+    background-color: $pink;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 20px 20px 0 0;
+    font-weight: $fw600;
+    color: $dkPink;
+  }
+
+  &__maintext {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+
+    span {
+      font-weight: $fw600;
+      color: $dkPink;
+      font-weight: $fw600;
+    }
+
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    input {
+      height: 24px;
+      width: 200px;
+      background-color: $pink;
+      border: 1px solid white;
+    }
+  }
+
+  &__showName {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    width: 100%;
+
+    input {
+      height: 24px;
+      width: 200px;
+      background-color: $pink;
+      border: 1px solid white;
+      text-align: center;
+    }
+  }
+
+  &__btn {
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__add {
+    background-color: $pink;
+    border: 1px solid $dkPink;
+    border-radius: 20px;
+    text-align: center;
+    margin: 20px 0;
+    width: 100px;
+  }
+
+  &__nextbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__nextPage {
+    background-color: $pink;
+    border: 1px solid $dkPink;
+    border-radius: 20px;
+    text-align: center;
+    margin: 20px 0;
+    width: 100px;
+  }
+
+}
+
+
+.accountDetails {
+  &__main {
+
+    background-color: rgb(245, 208, 208, 0.5);
+    border: 1px solid $dkPink;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 28px 16px;
+
+  }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    color: $dkPink;
+    text-align: center;
+    font-weight: $fw600;
+    font-size: 16px;
+
+  }
+
+  &__btn {
+    display: flex;
+    gap: 64px;
+    margin-bottom: 12px;
+  }
+
+  &__search {
+    width: 120px;
+    height: 27px;
+    background-color: white;
+    border: 1px solid $pink;
+    border-radius: 20px;
+    color: $dkPink;
+    font-size: 16px;
+    font-weight: $fw600;
+
+  }
+
+}
+
+.editDialog {
+  width: 360px;
+  background-color: white;
+  position: absolute;
+
+  border-radius: 20px;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  &__topbar {
+    background-color: $pink;
+    text-align: center;
+    font-size: 20px;
+    border-radius: 20px 20px 0 0;
+    font-weight: $fw600;
+    color: $dkPink;
+  }
+
+  &__maintext {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+    font-size: 16px;
+
+
+    span {
+      font-weight: $fw600;
+      color: $dkPink;
+      font-weight: $fw600;
+    }
+
+  }
+
+  &__right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    font-size: 16px;
+
+
+    input {
+      height: 24px;
+      width: 200px;
+      background-color: $pink;
+      border: 1px solid white;
+    }
+  }
+
+  &__btn {
+    // border: 1px solid red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__add {
+    background-color: $pink;
+    border: 1px solid $dkPink;
+    border-radius: 20px;
+    text-align: center;
+    margin: 20px 20px 0;
+    width: 100px;
+    font-weight: $fw600;
+    font-size: 16px;
+
+  }
+
+  select {
+    height: 24px;
+    width: 200px;
+    text-align: center;
+    background-color: $pink;
+    border: 1px solid white;
+  }
+
+  &__delete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto 20px;
+  }
+
+  &__deleteBtn {
+    background-color: rgba(255, 0, 0, 0.6);
+    border: 1px solid rgba(255, 0, 0, 0.6);
+    border-radius: 20px;
+    text-align: center;
+    margin: 20px 20px 0;
+    width: 100px;
+    font-weight: $fw600;
+    font-size: 16px;
+  }
+
+
+}
+
+.editSettle {
+
+  .accountDetails__main {
+    background-color: rgb(217, 217, 217, 0.5);
+
+    border: 1px solid rgb(217, 217, 217, 0.5);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 28px 16px;
+
+  }
+
+  .accountDetails__top {
+    display: flex;
+    flex-direction: column;
+    color: #6C6C6C;
+    text-align: center;
+    font-weight: $fw600;
+    font-size: 16px;
+
+  }
+
+  &__btn {
+    display: flex;
+    gap: 64px;
+    margin-bottom: 12px;
+  }
+
+  .accountDetails__search:disabled {
+    background-color: #B0B0B0;
+    color: #6C6C6C;
+    border: 1px solid #6c6c6c;
+    cursor: not-allowed;
+  }
+}
+
+
+.fade-out {
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+.fade-out.fade-out-active {
+  opacity: 0;
+}

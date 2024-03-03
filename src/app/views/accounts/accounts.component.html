@@ -1,0 +1,128 @@
+<div class="accounts">
+
+  <div class="accounts__top">
+    <span>{{ accountData?.date }}</span>
+    <span>{{ accountData?.title }}</span>
+    <span>參與人員：{{ accountData?.participantName }}</span>
+  </div>
+
+  <table class="table accounts__table">
+    <thead>
+      <tr>
+        <th></th>
+        <th>金主</th>
+        <th>總額</th>
+        <th>買什麼</th>
+        <th>幫誰墊</th>
+        <th>金額</th>
+        <th></th>
+      </tr>
+    </thead>
+    <ng-container *ngFor="let record of accountList">
+      <tr *ngIf="record?.who && record?.count && record?.buy && record?.member && record?.membercount">
+        <td></td>
+        <td>{{ record?.who }}</td>
+        <td>{{ record?.count }}</td>
+        <td>{{ record?.buy }}</td>
+        <td>{{ record?.member }}</td>
+        <td>{{ record?.membercount }}</td>
+        <td><button class="accounts__editBtn" (click)="deleteRecord(record)"
+            [disabled]="accountData?.settle === '2'">刪除</button>
+        </td>
+      </tr>
+    </ng-container>
+  </table>
+
+  <div class="accounts__spacer">
+    &nbsp;
+  </div>
+
+  <table class="table accounts__table" *ngIf="accountList.length > 3">
+    <thead>
+      <tr>
+        <th></th>
+        <th>金主</th>
+        <th>幫誰墊</th>
+        <th>代墊金額</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let record of accountList | mapMembers">
+        <tr *ngIf="record.member && record.totalAmount">
+          <td></td>
+          <td>{{ record.member }}</td>
+          <td>{{record.helper}}</td>
+          <td>{{ record.totalAmount }}</td>
+          <td></td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+
+  <!-- <span>{{ accountList | mapMembers | calculateSummary }}</span> -->
+  <div class="accounts__total" *ngIf="accountList.length > 3">
+    <span>總結</span>
+    <ng-container *ngFor="let summary of accountList | mapMembers | calculateSummary">
+      <span *ngIf="summary.totalAmount !== 0">{{ summary.borrower }} 應支付給 {{ summary.helper }} {{
+        summary.difference}}</span>
+    </ng-container>
+  </div>
+
+
+
+</div>
+
+
+
+<div class="add">
+  <button class="add__addBtn" (click)="toggleDialog()" [disabled]="accountData && accountData.settle === '2'">+</button>
+</div>
+
+
+<div class="overlay" *ngIf="addTrue" (click)="toggleDialog()"></div>
+
+
+<div class="dialog" *ngIf="addTrue">
+  <div class="dialog__topbar">
+    <p>新增一筆紀錄</p>
+  </div>
+
+  <div class="dialog__maintext">
+
+    <div class="dialog__left">
+      <span>金主</span>
+      <span>買什麼</span>
+      <span>總額</span>
+      <span>幫誰墊</span>
+      <span *ngIf="member !== '全部'">金額</span>
+    </div>
+
+    <div class="dialog__right">
+
+      <select name="" id="" [(ngModel)]="selectValue">
+        <option value="" disabled selected>請選擇金主</option>
+        <option *ngFor="let name of accountData.participantName" [value]="name">{{name}}</option>
+      </select>
+
+      <input type="text" [(ngModel)]="inputValue">
+
+      <input type="number" [(ngModel)]="numberValue">
+
+      <select name="" id="" [(ngModel)]="member">
+        <option value="" disabled selected>請選擇幫誰墊</option>
+        <option *ngFor="let name of getAvailableHelpers()" [value]="name">{{name}}</option>
+      </select>
+
+      <input *ngIf="member !== '全部'" type="number" [(ngModel)]="membercount">
+    </div>
+
+
+  </div>
+
+  <div class="dialog__btn">
+    <button class="dialog__add" (click)="addRecord()">新增</button>
+  </div>
+
+</div>

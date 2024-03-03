@@ -1,0 +1,13 @@
+@import '../../../styles/variables';
+
+.header {
+  background-color: $pink;
+
+  &__text {
+    color: white;
+    font-size: 28px;
+    padding: 12px;
+    text-align: center;
+    font-weight: $fw600;
+  }
+}

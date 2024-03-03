@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "account-58c0e": {
+      "hosting": {
+        "count": [
+          "account-58c0e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "account-58c0e"
+  }
+}

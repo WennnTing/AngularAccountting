@@ -1,0 +1,11 @@
+{
+  "hosting": [
+    {
+      "target": "count",
+      "source": ".",
+      "frameworksBackend": {
+        "region": "asia-east1"
+      }
+    }
+  ]
+}
